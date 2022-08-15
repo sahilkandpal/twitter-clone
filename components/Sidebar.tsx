@@ -34,7 +34,7 @@ function Sidebar({ setShowModal }: Props) {
           <NavItem icon={PersonIcon} text="Profile" />
           <NavItem icon={MenuIcon} text="Menu" />
           <TweetCircle float={false} onClick={() => setShowModal(true)} />
-          <ActionProfile user={user} />
+          <ActionProfile />
         </div>
       </div>
     </aside>

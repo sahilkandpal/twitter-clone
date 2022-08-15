@@ -26,12 +26,13 @@ interface Props {
 }
 
 function TweetBox({ setTweets, type, close }: Props) {
+  const initialState = { file: new File([""], "new.txt"), url: "" };
   const [text, setText] = useState<string>("");
   const [fileUrl, setFileUrl] = useState<{
     file: File;
     url: string;
     asset?: SanityAssetDocument;
-  }>({});
+  }>(initialState);
   const [isPosted, setIsPosted] = useState("");
   const { user } = useUserContext();
 
@@ -65,7 +66,7 @@ function TweetBox({ setTweets, type, close }: Props) {
   const discardFile = (url: string) => {
     URL.revokeObjectURL(url);
     // const filesUrl = fileUrl.filter((f) => f.url !== url);
-    setFileUrl({});
+    setFileUrl(initialState);
   };
 
   const uploadMedia = async () => {
@@ -146,7 +147,7 @@ function TweetBox({ setTweets, type, close }: Props) {
           placeholder="What's happening?"
           onChange={(e) => setText(e.target.value)}
         />
-        {fileUrl.file && (
+        {fileUrl.url && (
           <div className="grid gap-3 grid-flow-row grid-cols-2 py-2">
             <MediaPreview
               discardFile={discardFile}

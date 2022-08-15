@@ -14,6 +14,7 @@ import { useUserContext } from "../context/userContext";
 import sanityClient from "../sanity";
 import { groq } from "next-sanity";
 import CommentBox from "./CommentBox";
+import { Comment } from "../typings";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -21,14 +22,19 @@ interface Props {
   tweet: Tweet;
 }
 
+interface Like {
+  _id: null | string;
+  val: boolean;
+}
+
 function Tweet({ tweet }: Props) {
   const imgTypes = ["png", "jpg", "gif", "jpeg"];
   const vidTypes = ["mp4", "mov"];
   const [mediaType, setMediaType] = useState<string | null>(null);
-  const [like, setLike] = useState({ _id: null, val: false });
+  const [like, setLike] = useState<Like>({ _id: null, val: false });
   const [likeCount, setLikeCount] = useState<number | null>(null);
   const [showComment, setShowComment] = useState(false);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [commCount, setCommCount] = useState<number | null>(null);
 
   const { user } = useUserContext();
@@ -124,8 +130,10 @@ function Tweet({ tweet }: Props) {
 
   const fetchMoreComments = async () => {
     const lastId = comments[comments.length - 1]._id;
-    const index =
-      commCount - comments.length > 3 ? comments.length + 3 : commCount;
+    let index;
+    if (commCount !== null) {
+      index = commCount - comments.length > 3 ? comments.length + 3 : commCount;
+    }
     const query = groq`
     *[_type=="comment" && references('${tweet._id}')]  | order(_createdAt desc) [${comments.length}...${index}] {
         _id,

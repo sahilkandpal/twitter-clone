@@ -5,10 +5,11 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { googleLogout } from "@react-oauth/google";
 import { useUserContext } from "../context/userContext";
+import { User } from "../typings";
 
 const ActionProfile = () => {
   const { logout } = useAuthContext();
-  const { user } = useUserContext();
+  const { user }: { user: User } = useUserContext();
 
   const handleGoogleLogout = () => {
     console.log("logging out...");

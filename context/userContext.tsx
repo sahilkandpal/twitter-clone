@@ -1,7 +1,12 @@
 import React, { createContext, useContext, useState } from "react";
+import { User } from "../typings";
 
-const UserContext = createContext({
-  user: {},
+interface UserContextType {
+  user: User;
+  setUserData: (value: any) => void;
+}
+const UserContext = createContext<UserContextType>({
+  user: { _id: "", image: "", name: "" },
   setUserData: (value: any) => {},
 });
 
@@ -10,7 +15,7 @@ export const UserContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ _id: "", image: "", name: "" });
 
   const setUserData = (value: any) => {
     setUser(value);

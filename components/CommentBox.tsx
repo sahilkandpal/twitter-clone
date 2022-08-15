@@ -2,11 +2,12 @@ import { groq } from "next-sanity";
 import React, { useEffect, useState } from "react";
 import ReactTimeAgo from "react-time-ago";
 import sanityClient from "../sanity";
+import { Comment } from "../typings";
 
 interface Props {
   tweetId: string;
   userId: string;
-  comments: never[];
+  comments: Comment[];
   fetchComments: () => Promise<void>;
   fetchMoreComments: () => Promise<void>;
   commCount: number | null;
@@ -27,9 +28,14 @@ const CommentBox = ({
   }, []);
 
   const ShowMore = () => {
-    const index =
-      commCount - comments.length > 3 ? comments.length + 3 : commCount;
-    const nextCount = index - comments.length;
+    let index;
+    if (commCount !== null) {
+      index = commCount - comments.length > 3 ? comments.length + 3 : commCount;
+    }
+    let nextCount;
+    if (index !== undefined) {
+      nextCount = index - comments.length;
+    }
     if (comments.length && commCount && comments.length < commCount)
       return (
         <div

@@ -1,9 +1,10 @@
 import { groq } from "next-sanity";
 import React, { useEffect, useState } from "react";
 import sanityClient from "../sanity";
+import { User } from "../typings";
 
 const WhoToFollow = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   const getUsers = async () => {
     const query = groq`
