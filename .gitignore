@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/twitter-backend/node_modules
+twitter-backend/
 
 # testing
 /coverage
