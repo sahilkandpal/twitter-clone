@@ -27,14 +27,14 @@ const MediaPreview = ({ discardFile, url, fileState }: Props) => {
       >
         <DeleteIcon className="text-xl text-[#fff]" />
       </span>
-      {imgTypes.includes(fileType) && (
+      {fileType && imgTypes.includes(fileType) && (
         <img
           src={url}
           alt=""
           className="rounded-xl h-[12rem] w-full object-cover"
         />
       )}
-      {vidTypes.includes(fileType) && (
+      {fileType && vidTypes.includes(fileType) && (
         <video src={url} className="rounded-xl h-[12rem] w-full object-cover" />
       )}
     </div>
