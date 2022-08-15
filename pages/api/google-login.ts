@@ -16,7 +16,7 @@ export default async function handler(
     audience: process.env.NEXT_PUBLIC_GOOGLE_ID,
   });
 
-  const payload = ticket.getPayload();
+  const payload: any = ticket.getPayload();
   const { email_verified, name, email, sub, picture } = payload;
 
   if (email_verified) {

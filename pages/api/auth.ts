@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   const { token } = req.body;
   if (!token) res.status(400).json({ message: "access denied" });
-  let decoded, user;
+  let decoded: any, user;
   try {
     decoded = jwt.verify(token, `${process.env.NEXT_PUBLIC_JWT_SECRET}`);
     let { _id } = decoded;
