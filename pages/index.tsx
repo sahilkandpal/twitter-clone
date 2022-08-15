@@ -2,16 +2,16 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Router from "next/router";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import { BsTwitter as TwitterIcon } from "react-icons/bs";
 import withPublic from "../hooks/withPublic";
 import { useAuthContext } from "../context/authContext";
 
 const Home: NextPage = () => {
   const { login } = useAuthContext();
-  const handleLogin = async ({ credential }) => {
+  const handleLogin = (credentialResponse: CredentialResponse) => {
     // console.log(credential);
-    login(credential);
+    login(credentialResponse.credential);
     // store returned user somehow
   };
 

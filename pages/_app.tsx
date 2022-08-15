@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 
   return (
     // <SessionProvider session={session}>
-    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_ID}>
+    <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_ID}`}>
       <UserContextProvider>
         <AuthContextProvider>
           {loader && (

@@ -4,7 +4,7 @@ import { useUserContext } from "./userContext";
 
 const AuthContext = createContext({
   auth: "loading",
-  login: (token: string) => {},
+  login: (token: string | undefined) => {},
   logout: () => {},
 });
 
@@ -37,7 +37,7 @@ export const AuthContextProvider = ({
     } else setAuth("unauthenticated");
   };
 
-  const login = async (token: string) => {
+  const login = async (token: string | undefined) => {
     setAuth("loading");
     const res = await fetch("/api/google-login", {
       method: "POST",
