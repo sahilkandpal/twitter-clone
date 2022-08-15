@@ -185,12 +185,12 @@ function Tweet({ tweet }: Props) {
             <img
               src={tweet.media.url}
               alt=""
-              className="rounded-2xl w-full border border-[lightgrey] min-w-0"
+              className="rounded-2xl w-full border border-[lightgrey] min-w-0 max-h-[700px] object-cover"
             />
           ) : null}
           {tweet.media && mediaType == "vid" ? (
             <video
-              className="rounded-2xl h-[200px] min-w-0"
+              className="rounded-2xl w-full min-w-0 max-h-[700px] object-cover"
               autoPlay={true}
               src={tweet.media.url}
               controls
