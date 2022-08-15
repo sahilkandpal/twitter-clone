@@ -34,7 +34,7 @@ const Home: React.FC<Props> = ({ tweets }) => {
           showModal={showModal}
           setShowModal={setShowModal}
         />
-        <div className="py-3 pl-7 lg:flex-[0.285]">
+        <div className="hidden lg:block py-3 pl-7 lg:flex-[0.285]">
           <WhoToFollow />
         </div>
       </main>

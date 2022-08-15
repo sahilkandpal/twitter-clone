@@ -22,7 +22,7 @@ const WhoToFollow = () => {
     getUsers();
   }, []);
   return (
-    <div className="hidden lg:block bg-[#f7f7f7] rounded-2xl py-3 min-h-[200px]">
+    <div className="bg-[#f7f7f7] rounded-2xl py-3 min-h-[200px]">
       <h1 className="font-bold text-xl px-4">Who To Follow</h1>
       <div className="users mt-5 text-sm">
         {users.map((user) => (
