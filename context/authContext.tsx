@@ -20,7 +20,7 @@ export const AuthContextProvider = ({
     const token = localStorage.getItem("twitter-token");
     console.log("verifying...");
     if (token) {
-      const res = await fetch("http://localhost:3000/api/auth", {
+      const res = await fetch("/api/auth", {
         method: "POST",
         body: JSON.stringify({
           token,
