@@ -57,7 +57,7 @@ export const AuthContextProvider = ({
     console.log("data->", data);
   };
 
-  const logout = (tc) => {
+  const logout = () => {
     console.log("real logout");
     localStorage.removeItem("twitter-token");
     setAuth("unauthenticated");
