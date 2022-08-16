@@ -13,11 +13,7 @@ import { useModal } from "react-hooks-use-modal";
 import TweetBox from "../components/TweetBox";
 import WhoToFollow from "../components/WhoToFollow";
 
-interface Props {
-  tweets: Tweet[];
-}
-
-const Home: React.FC<Props> = ({ tweets }) => {
+const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -29,11 +25,7 @@ const Home: React.FC<Props> = ({ tweets }) => {
 
       <main className="flex h-full">
         <Sidebar setShowModal={setShowModal} />
-        <Feed
-          tweets={tweets}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
+        <Feed showModal={showModal} setShowModal={setShowModal} />
         <div className="hidden lg:block py-3 pl-7 lg:flex-[0.285]">
           <WhoToFollow />
         </div>
@@ -43,21 +35,5 @@ const Home: React.FC<Props> = ({ tweets }) => {
     </div>
   );
 };
-
-export async function getServerSideProps() {
-  const query = groq`
-  *[_type=="tweet"] | order(_createdAt desc){
-    _id,
-    ...,
-    "media": {"url": media.asset->url,"_ref": media.asset._ref },
-    "user": {"name": user->name, "image": user->image}
-  }
-  `;
-  const tweets = await sanityClient.fetch(query);
-
-  return {
-    props: { tweets },
-  };
-}
 
 export default withProtected(Home);

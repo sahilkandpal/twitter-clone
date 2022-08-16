@@ -31,11 +31,15 @@ function Tweet({ tweet }: Props) {
   const imgTypes = ["png", "jpg", "gif", "jpeg"];
   const vidTypes = ["mp4", "mov"];
   const [mediaType, setMediaType] = useState<string | null>(null);
-  const [like, setLike] = useState<Like>({ _id: null, val: false });
-  const [likeCount, setLikeCount] = useState<number | null>(null);
+  const [like, setLike] = useState<Like>(
+    tweet.myLike
+      ? { _id: tweet.myLike._id, val: true }
+      : { _id: null, val: false }
+  );
+  const [likeCount, setLikeCount] = useState<number | null>(tweet.likeCount);
   const [showComment, setShowComment] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
-  const [commCount, setCommCount] = useState<number | null>(null);
+  const [commCount, setCommCount] = useState<number | null>(tweet.commCount);
 
   const { user } = useUserContext();
   const getMediaType = () => {
@@ -71,9 +75,9 @@ function Tweet({ tweet }: Props) {
   };
 
   useEffect(() => {
-    fetchLike();
-    getLikes();
-    getCommCount();
+    // fetchLike();
+    // getLikes();
+    // getCommCount();
   }, []);
 
   console.log("mediaType", mediaType, tweet);

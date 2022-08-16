@@ -19,6 +19,9 @@ export type TweetBody = {
     url: string;
     _ref: string;
   };
+  commCount: number;
+  likeCount: number;
+  myLike: null | { _id: string };
 };
 
 export interface User {
